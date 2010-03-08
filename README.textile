@@ -14,6 +14,10 @@ h2. Usage
 # Do whatever it is that needs doing. Redmine will not send emails as a result of your actions while stealth mode is enabled. Other users's actions will continue to send email unless they have also activated stealth mode.
 # Click "Disable stealth mode" in the account menu. Don't worry. You got away with it.
 
+h2. To-do
+
+* Determine compatibility with different versions of redmine. I developed this with Redmine 0.9.1.stable. Please let me know if you find incompatibilities with older or newer versions.
+
 h2. License
 
 This sofware is licensed under the GNU GPL v2. See COPYRIGHT and COPYING for details.
