@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
   <title>Redmine Stealth plugin</title>
-  
+
   <style type="text/css">
     body {
       margin-top: 1.0em;
@@ -30,10 +30,11 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
-  
+
 </head>
 
 <body>
+
   <a href="http://github.com/teleological/redmine-stealth-plugin"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
@@ -47,12 +48,18 @@
     <p>This is a plugin for the Redmine project management application that allows users to temporarily disable the automatic emails which are sent out (depending on configuration) when content is added or changed, such as when updating issues or wiki pages. The intent of this plugin is to allow users to make bulk changes or minor corrections without flooding the inboxes of other users of a project.
     </p>
 
-
     <h2>Install</h2>
     <ul>
-      <li>Install the redmine-stealth-plugin into your redmine application directory: <code>./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git</code></li>
-      <li> Restart any running Redmine application servers</li>
-      <li> Configure the per-role permissions for "Toggle stealth mode" as desired</li>
+      <li>Install the redmine-stealth-plugin into your redmine application directory: <code>./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git</code></li>
+      <li> Restart any running Redmine application servers</li>
+      <li> Configure the per-role permissions for "Toggle stealth mode" as desired</li>
+    </ul>
+
+    <h2>Usage</h2>
+    <ul>
+      <li>Click "Enable stealth mode" in the account menu in the upper right corner. If you don't see this option, the "Toggle stealth mode" permission may not be enabled for your role.</li>
+      <li>Do whatever it is that needs doing. Redmine will not send emails as a result of your actions while stealth mode is enabled. Other users's actions will continue to send email unless they have also activated stealth mode.</li>
+      <li>Click "Disable stealth mode" in the account menu. Don't worry. You got away with it.</li>
     </ul>
 
     <h2>Dependencies</h2>
@@ -86,5 +93,6 @@ try {
 var pageTracker = _gat._getTracker("UA-2114950-3");
 pageTracker._trackPageview();
 } catch(err) {}</script>
+
 </body>
 </html>
