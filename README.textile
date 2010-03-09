@@ -20,5 +20,5 @@ h2. To-do
 
 h2. License
 
-This sofware is licensed under the GNU GPL v2. See COPYRIGHT and COPYING for details.
+This software is licensed under the GNU GPL v2. See COPYRIGHT and COPYING for details.
 
