@@ -4,7 +4,7 @@ module RedmineStealth
   LABEL_ACTION_CLOAK     = 'enable_stealth_mode'
   LABEL_ACTION_DECLOAK   = 'disable_stealth_mode'
 
-  MESSAGE_TOGGLE_FAILED  = 'Failed to toggle stealth mode.'
+  MESSAGE_TOGGLE_FAILED  = 'failed_to_toggle_stealth_mode'
 
   DOMID_STEALTH_TOGGLE   = 'stealth_toggle'
 
