@@ -1,8 +1,8 @@
-
 module RedmineStealth
+  include Redmine::I18n
 
-  LABEL_ACTION_CLOAK     = 'Enable stealth mode'
-  LABEL_ACTION_DECLOAK   = 'Disable stealth mode'
+  LABEL_ACTION_CLOAK     = 'enable_stealth_mode'
+  LABEL_ACTION_DECLOAK   = 'disable_stealth_mode'
 
   MESSAGE_TOGGLE_FAILED  = 'Failed to toggle stealth mode.'
 
@@ -43,7 +43,7 @@ module RedmineStealth
   end
 
   def toggle_stealth_label
-    cloaked? ? LABEL_ACTION_DECLOAK : LABEL_ACTION_CLOAK
+    cloaked? ? l(LABEL_ACTION_DECLOAK) : l(LABEL_ACTION_CLOAK)
   end
 
 end

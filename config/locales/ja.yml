@@ -1,0 +1,5 @@
+# Japanese strings go here for Rails i18n
+ja:
+  stealth: "Redmine Stealth"
+  enable_stealth_mode: "メール送信ON (OFFに切り替え)"
+  disable_stealth_mode: "メール送信OFF (ONに切り替え)"

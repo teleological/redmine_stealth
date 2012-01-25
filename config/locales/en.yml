@@ -1,0 +1,5 @@
+# English strings go here for Rails i18n
+en:
+  stealth: "Redmine Stealth"
+  enable_stealth_mode: "Enable Stealth Mode"
+  disable_stealth_mode: "Disable Stealth Mode"
