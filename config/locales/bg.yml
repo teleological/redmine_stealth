@@ -1,0 +1,6 @@
+# Bulgarian strings go here for Rails i18n
+bg:
+  stealth: "Redmine Стелт"
+  enable_stealth_mode: "Разрешаване на стелт режим"
+  disable_stealth_mode: "Забраняване на стелт режим"
+  failed_to_toggle_stealth_mode: "Невъзможност за превключване на стелт режим."
