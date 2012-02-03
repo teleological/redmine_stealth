@@ -1,0 +1,5 @@
+de:
+  stealth: "Redmine Tarnkappenmodus"
+  enable_stealth_mode: "Tarnkappenmodus einschalten"
+  disable_stealth_mode: "Tarnkappenmodus abschalten"
+  failed_to_toggle_stealth_mode: "Tarnkappenmodus konnte nicht gewechselt werden."
