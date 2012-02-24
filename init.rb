@@ -4,6 +4,8 @@ require 'redmine_stealth'
 require 'redmine_menu_manager_extensions'
 require 'action_mailer_base_extensions'
 
+require 'stealth_hooks'
+
 Redmine::Plugin.register :redmine_stealth do
 
   name        'Redmine Stealth plugin'
