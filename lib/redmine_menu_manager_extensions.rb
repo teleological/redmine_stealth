@@ -25,6 +25,7 @@ module Redmine
         if user_remote_options = item.remote
           remote_options  = { :url => url }
           remote_options.update(user_remote_options)
+          remote_options[:success] = "toggleStealthClassesOnBody();"
           html_options = item.html_options(:selected => selected)
           link_to_remote(h(caption), remote_options, html_options)
         else

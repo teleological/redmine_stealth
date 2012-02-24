@@ -3,6 +3,7 @@ require 'redmine'
 require 'redmine_stealth'
 require 'redmine_menu_manager_extensions'
 require 'action_mailer_base_extensions'
+require 'stealth_hooks'
 
 Redmine::Plugin.register :redmine_stealth do
 
@@ -47,6 +48,11 @@ Redmine::Plugin.register :redmine_stealth do
     :remote   => {
       :failure => "alert('#{::RedmineStealth::MESSAGE_TOGGLE_FAILED}')",
     }
-
 end
 
+require 'dispatcher'
+require 'application_helper_patch'
+
+Dispatcher.to_prepare do
+  ApplicationHelper.send(:include, ApplicationHelperPatch)
+end
