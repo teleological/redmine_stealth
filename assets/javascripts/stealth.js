@@ -1,8 +1,7 @@
 function toggleStealthClassesOnBody() {
   el = $$('body')[0]
 
-  if (el.hasClassName('stealth_on')) 
-  {
+  if (el.hasClassName('stealth_on')) {
     el.removeClassName('stealth_on');
     el.addClassName('stealth_off');
   } else {

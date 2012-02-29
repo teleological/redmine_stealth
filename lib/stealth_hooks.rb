@@ -6,8 +6,8 @@ module RedmineStealth
     end
 
     def view_layouts_base_html_head(context={})
-      js = javascript_include_tag 'stealth.js', :plugin => 'redmine-stealth-plugin'
-      js
+      javascript_include_tag 'stealth.js',
+        :plugin => 'redmine-stealth-plugin'
     end
   end
 end
