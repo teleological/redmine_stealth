@@ -12,10 +12,11 @@ module StealthCssHelper
 
   module InstanceMethods
     def body_css_classes_with_stealth
+     css = body_css_classes_without_stealth || ''
      if ::RedmineStealth.cloaked?
-       body_css_classes_without_stealth += ' stealth_on'
+       css += ' stealth_on'
      else
-       body_css_classes_without_stealth += ' stealth_off'
+       css += ' stealth_off'
      end
     end
   end
