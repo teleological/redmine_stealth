@@ -1,4 +1,5 @@
 require 'redmine'
+require 'redmine/i18n'
 
 require 'redmine_stealth'
 require 'redmine_menu_manager_extensions'
@@ -7,11 +8,13 @@ require 'stealth_hooks'
 
 Redmine::Plugin.register :redmine_stealth do
 
+  extend Redmine::I18n
+
   name        'Redmine Stealth plugin'
   author      'Riley Lynch'
   description 'Enables users to disable Redmine email notifications ' +
               'for their actions'
-  version     '0.3.0'
+  version     '0.4.0'
 
   if respond_to?(:url)
     url 'http://teleological.github.com/redmine-stealth-plugin'
@@ -23,7 +26,7 @@ Redmine::Plugin.register :redmine_stealth do
   permission :toggle_stealth_mode, :stealth => :toggle
 
   decide_toggle_display =
-    lambda do
+    lambda do |*_|
       show_toggle = false
       if my_user = ::User.current
         toggle_action = {:controller => 'stealth', :action => 'toggle'}
@@ -46,7 +49,7 @@ Redmine::Plugin.register :redmine_stealth do
       :id => ::RedmineStealth::DOMID_STEALTH_TOGGLE,
     },
     :remote   => {
-      :failure => "alert('#{::RedmineStealth::MESSAGE_TOGGLE_FAILED}')",
+      :failure => "alert('#{l(::RedmineStealth::MESSAGE_TOGGLE_FAILED)}')",
     }
 end
 

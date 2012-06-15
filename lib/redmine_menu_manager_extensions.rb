@@ -23,11 +23,13 @@ module Redmine
     module MenuHelper
       def render_single_menu_node_with_remote_option(item,caption,url,selected)
         if user_remote_options = item.remote
-          remote_options  = { :url => url }
+          remote_options  = {
+            :url     => url,
+            :success => "toggleStealthClassesOnBody();"
+          }
           remote_options.update(user_remote_options)
-          remote_options[:success] = "toggleStealthClassesOnBody();"
-          html_options = item.html_options(:selected => selected)
-          link_to_remote(h(caption), remote_options, html_options)
+          link_to_remote(h(caption), remote_options, 
+                         item.html_options(:selected => selected))
         else
           render_single_menu_node_without_remote_option(item,
                                                         caption,url,selected)
