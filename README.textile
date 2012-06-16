@@ -16,7 +16,7 @@ h2. Usage
 
 h2. To-do
 
-* Determine compatibility with different versions of redmine. I developed this with Redmine 0.9.1.stable. Please let me know if you find incompatibilities with older or newer versions.
+* Determine compatibility with different versions of redmine. This plugin was initially developed this with Redmine 0.9.1.stable, and version 0.4.0 was developed against Redmine 1.4.3. Please let me know if you find incompatibilities with older or newer versions.
 
 h2. License
 
