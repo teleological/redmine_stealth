@@ -1,9 +1,16 @@
+
 require 'redmine'
 require 'redmine/i18n'
 
 require 'redmine_stealth'
 require 'redmine_menu_manager_extensions'
-require 'action_mailer_base_extensions'
+
+if Rails::VERSION::MAJOR >= 3
+  require 'stealth_mail_interceptor'
+else
+  require 'action_mailer_base_extensions'
+end
+
 require 'stealth_hooks'
 
 Redmine::Plugin.register :redmine_stealth do
@@ -14,7 +21,7 @@ Redmine::Plugin.register :redmine_stealth do
   author      'Riley Lynch'
   description 'Enables users to disable Redmine email notifications ' +
               'for their actions'
-  version     '0.4.0'
+  version     '0.5.0'
 
   if respond_to?(:url)
     url 'http://teleological.github.com/redmine-stealth-plugin'
@@ -53,9 +60,19 @@ Redmine::Plugin.register :redmine_stealth do
     }
 end
 
-require 'dispatcher'
+require 'application_helper'
 require 'stealth_css_helper'
 
-Dispatcher.to_prepare do
-  ApplicationHelper.send(:include, StealthCssHelper)
+stealth_css_helper_mixin = lambda do |*_|
+  unless ApplicationHelper.included_modules.include?(StealthCssHelper)
+    ApplicationHelper.send(:include, StealthCssHelper)
+  end
 end
+
+if Rails::VERSION::MAJOR >= 3
+  ActionDispatch::Callbacks.to_prepare(&stealth_css_helper_mixin)
+else
+  require 'dispatcher'
+  Dispatcher.to_prepare(&stealth_css_helper_mixin)
+end
+

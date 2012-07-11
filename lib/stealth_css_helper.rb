@@ -1,4 +1,3 @@
-require_dependency 'application_helper'
 
 module StealthCssHelper
   def self.included(base) # :nodoc:
@@ -21,3 +20,4 @@ module StealthCssHelper
     end
   end
 end
+

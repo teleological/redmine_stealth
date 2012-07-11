@@ -4,8 +4,8 @@ This is a plugin for the "Redmine project management application":http://www.red
 
 h2. Installation
 
-# Install the redmine-stealth-plugin into your redmine application directory: ./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git
-# Restart any running Redmine application servers
+# Install the redmine-stealth-plugin into your redmine application directory. For Redmine 2, git clone http://github.com/teleological/redmine-stealth-plugin.git plugins/redmine-stealth-plugin or for Redmine 1: ./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git
+# Restart any running Redmine application servers or touch tmp/restart.txt for Passenger
 # Configure the per-role permissions for "Toggle stealth mode" as desired
 
 h2. Usage
@@ -14,9 +14,12 @@ h2. Usage
 # Do whatever it is that needs doing. Redmine will not send emails as a result of your actions while stealth mode is enabled. Other users's actions will continue to send email unless they have also activated stealth mode.
 # Click "Disable stealth mode" in the account menu. Don't worry. You got away with it.
 
-h2. To-do
+h2. Compatibility
 
-* Determine compatibility with different versions of redmine. This plugin was initially developed this with Redmine 0.9.1.stable, and version 0.4.0 was developed against Redmine 1.4.3. Please let me know if you find incompatibilities with older or newer versions.
+* Version 0.5.0 was written for Redmine 2.0.3 and tested for backwards-compatibility with Redmine 1.4.3.
+* Version 0.4.0 was written for Redmine 1.4.3 and added support for Ruby 1.9.
+* Previous verions were written for Redmine 0.9.1.stable and reported to work with Redmine 1.1.2 and 1.3-stable.
+* Compatibility with Chiliproject is unknown, but patches are welcome.
 
 h2. License
 

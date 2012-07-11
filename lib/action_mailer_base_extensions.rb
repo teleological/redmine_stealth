@@ -1,4 +1,6 @@
 
+# Rails < 3
+
 module ActionMailerBaseExtensions
   def deliver_with_stealth!(mail=nil)
     mail ||= instance_variable_get(:@mail)
