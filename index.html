@@ -48,12 +48,18 @@
     <p>This is a plugin for the Redmine project management application that allows users to temporarily disable the automatic emails which are sent out (depending on configuration) when content is added or changed, such as when updating issues or wiki pages. The intent of this plugin is to allow users to make bulk changes or minor corrections without flooding the inboxes of other users of a project.
     </p>
 
-    <p>Version 0.4.0 includes support for Redmine 1.4.3 and Ruby 1.9.</p>
+    <p>Version 0.5.0 adds support for Redmine 2.0.3 and continues to support Redmine 1.4.3 and Ruby 1.8 or 1.9.</p>
 
     <h2>Install</h2>
     <ul>
-      <li>Install the redmine-stealth-plugin into your redmine application directory: <code>./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git</code></li>
-      <li> Restart any running Redmine application servers</li>
+      <li>Install the redmine-stealth-plugin into your redmine application directory:
+        <ul>
+          <li>Redmine 1: <code>./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git</code></li>
+          <li>Redmine 2: <code>git clone http://github.com/teleological/redmine-stealth-plugin.git plugins/redmine-stealth-plugin</code></li>
+      <code></li>      
+        </ul>
+      </li>
+      <li> Restart any running Redmine application servers, or for Passenger, <code>touch tmp/restart.txt</code></li>
       <li> Configure the per-role permissions for "Toggle stealth mode" as desired</li>
     </ul>
 
