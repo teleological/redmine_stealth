@@ -1,0 +1,6 @@
+# Simplifeid Chinese strings go here for Rails i18n
+zh:
+  stealth: "Redmine静默模式"
+  enable_stealth_mode: "启用静默模式"
+  disable_stealth_mode: "禁用静默模式"
+  failed_to_toggle_stealth_mode: "无法切换静默模式。"
