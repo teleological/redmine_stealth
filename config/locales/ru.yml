@@ -1,0 +1,6 @@
+# Russian strings go here for Rails i18n
+ru:
+  stealth: "Redmine Stealth"
+  enable_stealth_mode: "Включить стелс-режим"
+  disable_stealth_mode: "Выключить стелс-режим"
+  failed_to_toggle_stealth_mode: "Не удалось включить стелс-режим."
