@@ -1,15 +1,24 @@
 
 class StealthController < ApplicationController
+
   unloadable
 
   before_filter :authorize_global, :only => :toggle
 
   def toggle
-    ::RedmineStealth.toggle_stealth_mode!
-    next_toggle_label = ::RedmineStealth.toggle_stealth_label
-    toggle_domid      = ::RedmineStealth::DOMID_STEALTH_TOGGLE
-    render :update do |page|
-      page[toggle_domid].replace_html(next_toggle_label)
+    is_cloaked = toggle_for_params
+    render :js => RedmineStealth.javascript_toggle_statement(is_cloaked)
+  end
+
+  private
+
+  def toggle_for_params
+    if params[:toggle] == 'true'
+      RedmineStealth.cloak!
+    elsif params[:toggle] == 'false'
+      RedmineStealth.decloak!
+    else
+      RedmineStealth.toggle_stealth_mode!
     end
   end
 

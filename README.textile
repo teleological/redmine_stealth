@@ -4,7 +4,9 @@ This is a plugin for the "Redmine project management application":http://www.red
 
 h2. Installation
 
-# Install the redmine-stealth-plugin into your redmine application directory. For Redmine 2, git clone http://github.com/teleological/redmine-stealth-plugin.git plugins/redmine-stealth-plugin or for Redmine 1: ./script/plugin install http://github.com/teleological/redmine-stealth-plugin.git
+# Install the redmine_stealth plugin into your redmine plugins directory:
+# git clone http://github.com/teleological/redmine_stealth.git
+# plugins/redmine_stealth (or vendor/plugins/redmine_stealth for Redmine 1.)
 # Restart any running Redmine application servers or touch tmp/restart.txt for Passenger
 # Configure the per-role permissions for "Toggle stealth mode" as desired
 
@@ -16,6 +18,7 @@ h2. Usage
 
 h2. Compatibility
 
+* Version 0.6.0 was written for Redmine 2.1.2 and tested for backwards-compatibility with Redmine 2.0.3 and Redmine 1.4.3.
 * Version 0.5.0 was written for Redmine 2.0.3 and tested for backwards-compatibility with Redmine 1.4.3.
 * Version 0.4.0 was written for Redmine 1.4.3 and added support for Ruby 1.9.
 * Previous versions were written for Redmine 0.9.1.stable and reported to work with Redmine 1.1.2 and 1.3-stable.
@@ -24,4 +27,3 @@ h2. Compatibility
 h2. License
 
 This software is licensed under the GNU GPL v2. See COPYRIGHT and COPYING for details.
-

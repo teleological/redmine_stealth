@@ -3,25 +3,42 @@ require 'redmine'
 require 'redmine/i18n'
 
 require 'redmine_stealth'
-require 'redmine_menu_manager_extensions'
 
-if Rails::VERSION::MAJOR >= 3
-  require 'stealth_mail_interceptor'
-else
-  require 'action_mailer_base_extensions'
+unless RedmineStealth::USE_UJS
+  require 'redmine_ext/menu_manager_extensions'
 end
 
-require 'stealth_hooks'
+if Rails::VERSION::MAJOR >= 3
+  require 'redmine_stealth/mail_interceptor'
+else
+  require 'action_mailer_ext/base_extensions'
+end
+
+require 'redmine_stealth/hooks'
 
 Redmine::Plugin.register :redmine_stealth do
 
   extend Redmine::I18n
 
+  plugin_locale_glob = respond_to?(:directory) ?
+    File.join(directory, 'config', 'locales', '*.yml') :
+    File.join(Rails.root, 'vendor', 'plugins',
+              'redmine_stealth', 'config', 'locales', '*.yml')
+
+  ::I18n.load_path += Dir.glob(plugin_locale_glob)
+
+  menu_options = {
+    :html => {
+      'id' => 'stealth_toggle',
+      'data-failure-message' => l(RedmineStealth::MESSAGE_TOGGLE_FAILED)
+    }
+  }
+
   name        'Redmine Stealth plugin'
   author      'Riley Lynch'
   description 'Enables users to disable Redmine email notifications ' +
               'for their actions'
-  version     '0.5.1'
+  version     '0.6.0'
 
   if respond_to?(:url)
     url 'http://teleological.github.com/redmine-stealth-plugin'
@@ -32,47 +49,40 @@ Redmine::Plugin.register :redmine_stealth do
 
   permission :toggle_stealth_mode, :stealth => :toggle
 
-  decide_toggle_display =
-    lambda do |*_|
-      show_toggle = false
-      if my_user = ::User.current
-        toggle_action = {:controller => 'stealth', :action => 'toggle'}
-        if my_user.allowed_to?(toggle_action,nil,:global => true)
-          show_toggle = true
-        end
-      end
-      show_toggle
+  toggle_url = { :controller => 'stealth', :action => 'toggle' }
+
+  decide_toggle_display = lambda do |*_|
+    can_toggle = false
+    if user = ::User.current
+      can_toggle = user.allowed_to?(toggle_url, nil, :global => true)
     end
+    can_toggle
+  end
 
-  stealth_menuitem_captioner =
-    lambda { |project| ::RedmineStealth.toggle_stealth_label }
+  stealth_menuitem_captioner = lambda do |project|
+    is_cloaked = RedmineStealth.cloaked?
+    RedmineStealth.status_label(is_cloaked)
+  end
 
-  menu :account_menu, :stealth,
-    { :controller => 'stealth', :action => 'toggle' },
+  if RedmineStealth::USE_UJS
+    menu_options[:html].update('remote' => true, 'method' => :post)
+  else
+    menu_options[:remote] = {
+      :method => :post,
+      :failure => 'RedmineStealth.notifyFailure();',
+      :with => %q{(function() {
+        var $toggle = $('stealth_toggle');
+        var params = $toggle.readAttribute('data-params-toggle');
+        return params ? ('toggle=' + params) : '';
+      })()}
+    }
+  end
+
+  menu :account_menu, :stealth, toggle_url, {
     :first    => true,
     :if       => decide_toggle_display,
-    :caption  => stealth_menuitem_captioner,
-    :html     => {
-      :id => ::RedmineStealth::DOMID_STEALTH_TOGGLE,
-    },
-    :remote   => {
-      :failure => "alert('#{l(::RedmineStealth::MESSAGE_TOGGLE_FAILED)}')",
-    }
-end
+    :caption  => stealth_menuitem_captioner
+  }.merge(menu_options)
 
-require 'application_helper'
-require 'stealth_css_helper'
-
-stealth_css_helper_mixin = lambda do |*_|
-  unless ApplicationHelper.included_modules.include?(StealthCssHelper)
-    ApplicationHelper.send(:include, StealthCssHelper)
-  end
-end
-
-if Rails::VERSION::MAJOR >= 3
-  ActionDispatch::Callbacks.to_prepare(&stealth_css_helper_mixin)
-else
-  require 'dispatcher'
-  Dispatcher.to_prepare(&stealth_css_helper_mixin)
 end
 
