@@ -41,7 +41,7 @@ Redmine::Plugin.register :redmine_stealth do
   version     '0.6.0'
 
   if respond_to?(:url)
-    url 'http://teleological.github.com/redmine-stealth-plugin'
+    url 'http://teleological.github.com/redmine_stealth'
   end
   if respond_to?(:author_url)
     author_url 'http://github.com/teleological'
