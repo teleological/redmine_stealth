@@ -1,0 +1,6 @@
+# French strings go here for Rails i18n
+fr:
+  stealth: "Redmine Stealth"
+  enable_stealth_mode: "Activer le mode discret"
+  disable_stealth_mode: "Désactiver le mode discret"
+  failed_to_toggle_stealth_mode: "Impossible de changer de mode discret."
