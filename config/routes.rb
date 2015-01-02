@@ -2,7 +2,7 @@
 if Rails::VERSION::MAJOR >= 3
 
   RedmineApp::Application.routes.draw do
-    post '/stealth/toggle', :to => 'stealth#toggle'
+    match '/stealth/toggle', :to => 'stealth#toggle'
   end
 
 else
