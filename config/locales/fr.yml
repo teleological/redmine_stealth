@@ -1,0 +1,6 @@
+# French strings go here for Rails i18n
+fr:
+  stealth: "Redmine Furtif"
+  enable_stealth_mode: "Activer le mode furtif"
+  disable_stealth_mode: "Désactiver le mode furtif"
+  failed_to_toggle_stealth_mode: "Impossible de changer le mode furtif"
