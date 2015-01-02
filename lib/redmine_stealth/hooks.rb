@@ -14,17 +14,9 @@ module RedmineStealth
       is_cloaked = RedmineStealth.cloaked?
       init_state = RedmineStealth.javascript_toggle_statement(is_cloaked)
 
-      if RedmineStealth::USE_UJS
-        js_lib = 'stealth'
-        javascript_include_tag(js_lib, :plugin => 'redmine_stealth') +
-          javascript_tag("jQuery(function($) { #{init_state} });")
-      else
-        js_lib = 'prototype-stealth'
-        javascript_include_tag(js_lib, :plugin => 'redmine_stealth') +
-          javascript_tag(%Q{
-            document.observe("dom:loaded", function() { #{init_state} });
-          })
-      end
+      js_lib = 'stealth'
+      javascript_include_tag(js_lib, :plugin => 'redmine_stealth') +
+        javascript_tag("jQuery(function($) { #{init_state} });")
     end
 
   end
