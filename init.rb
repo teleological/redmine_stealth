@@ -4,10 +4,6 @@ require 'redmine/i18n'
 
 require 'redmine_stealth'
 
-unless RedmineStealth::USE_UJS
-  require 'redmine_ext/menu_manager_extensions'
-end
-
 if Rails::VERSION::MAJOR >= 3
   require 'redmine_stealth/mail_interceptor'
 else
@@ -21,7 +17,7 @@ Redmine::Plugin.register :redmine_stealth do
   extend Redmine::I18n
 
   plugin_locale_glob = respond_to?(:directory) ?
-    File.join(directory, 'config', 'locales', '*.yml') :
+    File.join( File.dirname(__FILE__) , 'config', 'locales', '*.yml') :
     File.join(Rails.root, 'vendor', 'plugins',
               'redmine_stealth', 'config', 'locales', '*.yml')
 
@@ -64,19 +60,7 @@ Redmine::Plugin.register :redmine_stealth do
     RedmineStealth.status_label(is_cloaked)
   end
 
-  if RedmineStealth::USE_UJS
-    menu_options[:html].update('remote' => true, 'method' => :post)
-  else
-    menu_options[:remote] = {
-      :method => :post,
-      :failure => 'RedmineStealth.notifyFailure();',
-      :with => %q{(function() {
-        var $toggle = $('stealth_toggle');
-        var params = $toggle.readAttribute('data-params-toggle');
-        return params ? ('toggle=' + params) : '';
-      })()}
-    }
-  end
+  menu_options[:html].update('remote' => true, 'method' => :post)
 
   menu :account_menu, :stealth, toggle_url, {
     :first    => true,

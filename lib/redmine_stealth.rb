@@ -3,8 +3,6 @@ module RedmineStealth
 
   include Redmine::I18n
 
-  USE_UJS = defined?(::Jquery)
-
   PREF_STEALTH_ENABLED   = :stealth_mode
 
   MESSAGE_ACTION_CLOAK   = 'enable_stealth_mode'

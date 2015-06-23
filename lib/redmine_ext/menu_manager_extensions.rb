@@ -23,9 +23,9 @@ module Redmine
         if remote_options = item.remote_options
           non_html_options = remote_options.kind_of?(Hash) ?
             remote_options.reverse_merge(:url => url) : { :url => url }
-          link_to_remote(h(caption),
-                         non_html_options,
-                         item.html_options(:selected => is_sel))
+          link_to(h(caption),
+                         url,
+                         :selected => is_sel)
         else
           render_single_menu_node_without_remote(item, caption, url, is_sel)
         end
